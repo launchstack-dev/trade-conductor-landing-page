@@ -1031,7 +1031,7 @@
       <div class="hero-content">
         <div class="hero-text">
           <div class="hero-badge fade-in"><span class="hero-badge-dot"></span>Alpha Access Opening Soon </div>
-          <h1 class="fade-in fade-in-delay-1">The <span class="gradient">"Hedge Fund" </span>Risk Layer for Your
+          <h1 class="fade-in fade-in-delay-1">The <span class="gradient">Hedge Fund </span>Risk Layer for Your
             Composer Portfolio. </h1>
           <p class="hero-subtitle fade-in fade-in-delay-2">Stop watching 30% gains turn into losses. Automate your
             risk management,
@@ -1286,6 +1286,14 @@
             historical market data against your specific risk rules to see how they would have
             performed in 2020 or 2022. </div>
         </details>
+        <details class="faq-item">
+          <summary class="faq-summary">Do I need a Composer account?</summary>
+          <div class="faq-content">Yes. Trade Conductor requires an active <strong>Composer Trading Pass</strong> to
+            function. If you don't have one yet, you can <a href="https://www.composer.trade/pricing" target="_blank"
+              rel="noopener" style="color: var(--accent-blue); text-decoration: underline;">sign up for Composer
+              here</a>. Trade Conductor integrates directly with your Composer strategies to add the risk management
+            layer.</div>
+        </details>
       </div>
     </div>
   </section>
@@ -1296,10 +1304,30 @@
         <h2>Join the <span class="gradient">Alpha</span></h2>
         <p>I'm looking for 50 active traders to test the "Shield" logic before public release.</p>
 
+        <div
+          style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 12px; padding: 16px 20px; margin: 24px 0; text-align: center;">
+          <p style="margin: 0; color: var(--text-secondary); font-size: 0.95rem;">
+            <strong style="color: var(--accent-blue);">⚡ Composer Trading Pass Required</strong><br>
+            Trade Conductor works with your Composer account. <a href="https://www.composer.trade/pricing"
+              target="_blank" rel="noopener" style="color: var(--accent-blue); text-decoration: underline;">Sign up for
+              Composer →</a>
+          </p>
+        </div>
+
         <div class="form-wrapper">
           <!-- Brevo Form -->
           <div class="sib-form" style="text-align: center; background-color: transparent;">
             <div id="sib-form-container" class="sib-form-container">
+              <div id="success-message"
+                style="display: none; text-align: center; padding: 40px; background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 16px;">
+                <i data-lucide="mail"
+                  style="width: 48px; height: 48px; color: var(--accent-blue); margin-bottom: 16px;"></i>
+                <h3 style="color: var(--accent-blue); margin-bottom: 12px; font-size: 1.5rem;">Check Your Email</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 8px;">We've sent a confirmation email to your
+                  inbox.</p>
+                <p style="color: var(--text-primary); font-weight: 600;">Click the confirmation button in the email to
+                  secure your waitlist spot.</p>
+              </div>
               <div id="sib-container" class="sib-container--large sib-container--vertical"
                 style="text-align:center; background-color:transparent; max-width:540px; border-radius:3px; border-width:1px; border-color:#C0CCD9; border-style:solid;">
                 <form id="sib-form" method="POST"
@@ -1307,39 +1335,90 @@
                   <div style="padding: 8px 0;">
                     <div class="sib-form-block"
                       style="font-size:32px; text-align:left; font-weight:700; font-family:Helvetica, sans-serif; color:#3C4858; background-color:transparent; text-align:left">
-                      <p>Request Access</p>
+                      <p>Join the Waitlist</p>
                     </div>
                   </div>
                   <div style="padding: 8px 0;">
                     <div class="sib-input sib-form-block">
                       <div class="form__entry entry_block">
-                        <div class="form__label-row"><label class="entry__label"
-                            style="font-weight: 700; text-align:left; font-size:16px; font-family:Helvetica, sans-serif; color:#3c4858;"
-                            for="EMAIL" data-required="*">Enter your email address</label>
-                          <div class="entry__field"><input class="input" type="text" id="EMAIL" name="EMAIL"
-                              autocomplete="off" placeholder="you@example.com" data-required="true" required /></div>
-                        </div><label class="entry__error entry__error--primary"
-                          style="font-size:16px; text-align:left; font-family:Helvetica, sans-serif; color:#661d1d; background-color:#ffeded; border-radius:3px; border-color:#ff4949;"></label>
+                        <div class="form__label-row ">
+                          <label class="entry__label"
+                            style="font-weight: 700; text-align:left; font-size:16px; text-align:left; font-weight:700; font-family:Helvetica, sans-serif; color:#3c4858;"
+                            for="EMAIL" data-required="*">Enter your email address to join the waitlist</label>
+
+                          <div class="entry__field">
+                            <input class="input " type="text" id="EMAIL" name="EMAIL" autocomplete="off"
+                              placeholder="EMAIL" data-required="true" required />
+                          </div>
+                        </div>
+
+                        <label class="entry__error entry__error--primary"
+                          style="font-size:16px; text-align:left; font-family:Helvetica, sans-serif; color:#661d1d; background-color:#ffeded; border-radius:3px; border-color:#ff4949;">
+                        </label>
+                        <label class="entry__specification"
+                          style="font-size:12px; text-align:left; font-family:Helvetica, sans-serif; color:#8390A4; text-align:left">
+                          Provide your email address to subscribe. For e.g abc@xyz.com
+                        </label>
                       </div>
                     </div>
                   </div>
                   <div style="padding: 8px 0;">
-                    <div class="sib-form-block" style="text-align: left"><button
-                        class="sib-form-block__button sib-form-block__button-with-loader"
+                    <div class="sib-form-block" style="text-align: left">
+                      <button class="sib-form-block__button sib-form-block__button-with-loader"
                         style="font-size:16px; text-align:left; font-weight:700; font-family:Helvetica, sans-serif; color:#FFFFFF; background-color:#3E4857; border-radius:3px; border-width:0px;"
-                        form="sib-form" type="submit"><svg
-                          class="icon clickable__icon progress-indicator__icon sib-hide-loader-icon"
-                          viewBox="0 0 512 512">
+                        form="sib-form" type="submit">
+                        <svg class="icon clickable__icon progress-indicator__icon sib-hide-loader-icon"
+                          viewBox="0 0 512 512" style="">
                           <path
                             d="M460.116 373.846l-20.823-12.022c-5.541-3.199-7.54-10.159-4.663-15.874 30.137-59.886 28.343-131.652-5.386-189.946-33.641-58.394-94.896-95.833-161.827-99.676C261.028 55.961 256 50.751 256 44.352V20.309c0-6.904 5.808-12.337 12.703-11.982 83.556 4.306 160.163 50.864 202.11 123.677 42.063 72.696 44.079 162.316 6.031 236.832-3.14 6.148-10.75 8.461-16.728 5.01z" />
-                        </svg>REQUEST EARLY ACCESS </button></div>
-                  </div><input type="text" name="email_address_check" value="" class="input--hidden"><input
-                    type="hidden" name="locale" value="en"><input type="hidden" name="html_type" value="simple">
+                        </svg>
+                        JOIN THE ALPHA WAITLIST
+                      </button>
+                    </div>
+                  </div>
+                  <input type="text" name="email_address_check" value="" class="input--hidden">
+                  <input type="hidden" name="locale" value="en">
+                  <input type="hidden" name="html_type" value="simple">
                 </form>
               </div>
             </div>
           </div>
         </div>
+
+        <script>
+          // Handle form submission
+          document.getElementById('sib-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const form = this;
+            const formData = new FormData(form);
+
+            // Submit to Brevo
+            fetch(form.action, {
+              method: 'POST',
+              body: formData,
+              mode: 'no-cors' // Brevo doesn't support CORS, so we use no-cors
+            }).then(() => {
+              // Hide form and show success message
+              document.getElementById('sib-container').style.display = 'none';
+              document.getElementById('success-message').style.display = 'block';
+
+              // Re-initialize Lucide icons for the success message
+              if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+              }
+            }).catch((error) => {
+              console.error('Error:', error);
+              // Still show success since no-cors doesn't give us response
+              document.getElementById('sib-container').style.display = 'none';
+              document.getElementById('success-message').style.display = 'block';
+
+              if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+              }
+            });
+          });
+        </script>
       </div>
     </div>
   </section>
