@@ -745,6 +745,17 @@
       text-decoration: underline;
     }
 
+    .footer-disclaimer {
+      margin-top: 24px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.5;
+      opacity: 0.8;
+    }
+
     /* Responsive */
     @media (max-width: 1024px) {
       .hero-content {
@@ -1023,7 +1034,7 @@
   <!-- Navigation -->
   <nav>
     <div class="container nav-content"><a href="#" class="logo"><i data-lucide="trending-up" class="logo-icon"></i><span
-          class="logo-text">Trade Conductor</span></a><a href="#waitlist" class="nav-cta">Join Waitlist</a></div>
+          class="logo-text">Trade Conductor</span></a><a href="#waitlist" class="nav-cta">Join Alpha Waitlist</a></div>
   </nav>
   <!-- Hero Section -->
   <section class="hero">
@@ -1038,7 +1049,7 @@
             circuit breakers,
             and profit harvesting. </p><a href="#waitlist" class="hero-cta fade-in fade-in-delay-3"><i
               data-lucide="shield-check" style="width: 20px; height: 20px;"></i>Join the Alpha Waitlist </a>
-          <p class="hero-cta-micro fade-in fade-in-delay-4">Limited to first 50 users during beta.</p>
+          <p class="hero-cta-micro fade-in fade-in-delay-4">Limited to first 50 alpha users with active pruning.</p>
         </div>
         <div class="hero-visual fade-in fade-in-delay-2">
           <div class="app-preview-glow"></div><img src="hero_dashboard_updated_1764783197194.png"
@@ -1295,6 +1306,12 @@
               here</a>. Trade Conductor integrates directly with your Composer strategies to add the risk management
             layer.</div>
         </details>
+        <details class="faq-item">
+          <summary class="faq-summary">Is Trade Conductor affiliated with Composer?</summary>
+          <div class="faq-content">No. Trade Conductor is an independent software application and is not affiliated
+            with, endorsed by, or sponsored by Composer Technologies Inc. ("Composer"). We are a third-party tool
+            designed to enhance your experience with the Composer platform.</div>
+        </details>
       </div>
     </div>
   </section>
@@ -1303,7 +1320,7 @@
     <div class="container">
       <div class="cta-inner">
         <h2>Join the <span class="gradient">Alpha</span></h2>
-        <p>I'm looking for 50 active traders to test the "Shield" logic before public release.</p>
+        <p>I'm looking for 50 active traders to test the "Shield" logic during our Alpha phase.</p>
 
         <div
           style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 12px; padding: 16px 20px; margin: 24px 0; text-align: center;">
@@ -1312,6 +1329,8 @@
             Trade Conductor works with your Composer account. <a href="https://www.composer.trade/pricing"
               target="_blank" rel="noopener" style="color: var(--accent-blue); text-decoration: underline;">Sign up for
               Composer →</a>
+            <span style="display: block; font-size: 0.75rem; margin-top: 8px; opacity: 0.7;">* Trade Conductor is an
+              independent application and is not affiliated with Composer Technologies Inc.</span>
           </p>
         </div>
 
@@ -1327,7 +1346,7 @@
                 <p style="color: var(--text-secondary); margin-bottom: 8px;">We've sent a confirmation email to your
                   inbox.</p>
                 <p style="color: var(--text-primary); font-weight: 600;">Click the confirmation button in the email to
-                  secure your waitlist spot.</p>
+                  secure your alpha waitlist spot.</p>
               </div>
               <div id="sib-container" class="sib-container--large sib-container--vertical"
                 style="text-align:center; background-color:transparent; max-width:540px; border-radius:3px; border-width:1px; border-color:#C0CCD9; border-style:solid;">
@@ -1426,8 +1445,12 @@
   <!-- Footer -->
   <footer>
     <div class="container">
-      <p>&copy;
-        2025 Trade Conductor. Built for traders who refuse to give back gains.</p>
+      <p>&copy; 2025 Trade Conductor. Built for traders who refuse to give back gains.</p>
+      <div class="footer-disclaimer">
+        Trade Conductor is an independent software application and is not affiliated with, endorsed by, or sponsored by
+        Composer Technologies Inc. ("Composer"). All product names, logos, and brands are property of their respective
+        owners. Use of these names, logos, and brands does not imply endorsement.
+      </div>
     </div>
   </footer>
   <!-- Initialize Lucide Icons -->
