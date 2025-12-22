@@ -880,14 +880,106 @@
           </div>
         </div>
 
-        <div id="sib-container">
-          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px; text-align: center; font-weight: 700;">REQUEST ALPHA ACCESS</p>
-          <form id="sib-form" method="POST" action="YOUR_BREVO_ACTION_URL">
-            <input type="email" name="EMAIL" placeholder="trader@example.com" required style="width: 100%; padding: 16px; border-radius: 12px; background: var(--bg-primary); border: 1px solid var(--border-color); color: white; margin-bottom: 16px;">
-            <button type="submit" style="width: 100%; padding: 16px; border-radius: 12px; background: linear-gradient(135deg, var(--accent-blue), var(--accent-indigo)); color: white; border: none; font-weight: 700; cursor: pointer;">REQUEST ALPHA ACCESS</button>
+        <div id="sib-container" class="sib-container--large sib-container--vertical">
+          <div id="success-message" style="display: none; text-align: center; padding: 40px; background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 16px;">
+            <i data-lucide="mail" style="width: 48px; height: 48px; color: var(--accent-blue); margin-bottom: 16px;"></i>
+            <h3 style="color: var(--accent-blue); margin-bottom: 12px; font-size: 1.5rem;">Check Your Email</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 8px;">We've sent a confirmation email to your inbox.</p>
+            <p style="color: var(--text-primary); font-weight: 600;">Click the confirmation button in the email to secure your alpha waitlist spot.</p>
+          </div>
+          
+          <form id="sib-form" method="POST" action="https://b6e4e61b.sibforms.com/serve/MUIFAHK9RmYAIHXbig-so8qQS_hLh1tR9pOYsq9pQZYdXCGtd8RVm_z5N9CIVFc_GDuuhV3C0mGZz1PMwiXL-qorhW1wv0tNr-2pisVk1TvSUdd_d8S6a4fWaH2mOsOdA_7LHqdxfNchqbCnTlWkpZGxG1GK92IgvpPPM2ZlTC06pdd2yzApOLv3wJKU3DnaZwwH2gz-ixBK2PuY">
+            <div style="padding: 8px 0;">
+              <div class="sib-form-block" style="font-size:24px; text-align:center; font-weight:700; font-family:Helvetica, sans-serif; color:#3C4858; background-color:transparent;">
+                <p style="color: var(--text-primary); margin-bottom: 24px;">REQUEST ALPHA ACCESS</p>
+              </div>
+            </div>
+            
+            <div style="padding: 8px 0;">
+              <div class="sib-input sib-form-block">
+                <div class="form__entry entry_block">
+                  <div class="form__label-row">
+                    <label class="entry__label" for="EMAIL" data-required="*" style="display: none;">Email</label>
+                    <div class="entry__field">
+                      <input class="input" type="email" id="EMAIL" name="EMAIL" autocomplete="off" placeholder="Enter your email address" data-required="true" required style="width: 100%; padding: 16px 20px; border-radius: 10px; background: var(--bg-primary); border: 1px solid var(--border-color); color: var(--text-primary); font-family: 'Inter', sans-serif; font-size: 1rem; margin-bottom: 16px;" />
+                    </div>
+                  </div>
+                  <label class="entry__error entry__error--primary" style="display: none;"></label>
+                </div>
+              </div>
+            </div>
+
+            <div style="padding: 8px 0;">
+              <div class="sib-input sib-form-block">
+                <div class="form__entry entry_block">
+                  <div class="form__label-row">
+                    <label class="entry__label" for="ACCOUNT_SIZE" style="display: none;">Account Size</label>
+                    <div class="entry__field">
+                      <select class="input" id="ACCOUNT_SIZE" name="ACCOUNT_SIZE" style="width: 100%; padding: 16px 20px; border-radius: 10px; background: var(--bg-primary); border: 1px solid var(--border-color); color: var(--text-primary); font-family: 'Inter', sans-serif; font-size: 1rem; margin-bottom: 16px; cursor: pointer;">
+                        <option value="">Account size range (optional)</option>
+                        <option value="under-25k">Under $25,000</option>
+                        <option value="25k-100k">$25,000 - $100,000</option>
+                        <option value="100k-250k">$100,000 - $250,000</option>
+                        <option value="250k-500k">$250,000 - $500,000</option>
+                        <option value="500k-1m">$500,000 - $1,000,000</option>
+                        <option value="over-1m">Over $1,000,000</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div style="padding: 8px 0;">
+              <div class="sib-form-block" style="text-align: center">
+                <button class="sib-form-block__button sib-form-block__button-with-loader" form="sib-form" type="submit" style="width: 100%; padding: 16px 32px; border-radius: 10px; background: linear-gradient(135deg, var(--accent-blue), var(--accent-indigo)); color: white; border: none; font-weight: 700; font-size: 1rem; cursor: pointer; transition: all 0.3s ease;">
+                  JOIN WAITLIST
+                </button>
+              </div>
+            </div>
+            
+            <input type="text" name="email_address_check" value="" class="input--hidden" style="display: none;">
+            <input type="hidden" name="locale" value="en">
+            <input type="hidden" name="html_type" value="simple">
           </form>
+          
           <p style="text-align: center; font-size: 0.75rem; color: var(--text-muted); margin-top: 16px;">Limited batch invites sent weekly.</p>
         </div>
+
+        <script>
+          // Handle form submission
+          document.getElementById('sib-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const form = this;
+            const formData = new FormData(form);
+
+            // Submit to Brevo
+            fetch(form.action, {
+              method: 'POST',
+              body: formData,
+              mode: 'no-cors' // Brevo doesn't support CORS, so we use no-cors
+            }).then(() => {
+              // Hide form and show success message
+              document.getElementById('sib-container').querySelector('form').style.display = 'none';
+              document.getElementById('success-message').style.display = 'block';
+
+              // Re-initialize Lucide icons for the success message
+              if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+              }
+            }).catch((error) => {
+              console.error('Error:', error);
+              // Still show success since no-cors doesn't give us response
+              document.getElementById('sib-container').querySelector('form').style.display = 'none';
+              document.getElementById('success-message').style.display = 'block';
+
+              if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+              }
+            });
+          });
+        </script>
       </div>
     </div>
   </section>
