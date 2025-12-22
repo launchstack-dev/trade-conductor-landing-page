@@ -529,12 +529,55 @@
     #sib-container .input {
       background: var(--bg-primary) !important;
       border: 1px solid var(--border-color) !important;
-      color: white !important;
+      color: var(--text-primary) !important;
+      padding: 16px 20px !important;
+      border-radius: 10px !important;
+      font-family: 'Inter', sans-serif !important;
+      font-size: 1rem !important;
+      width: 100% !important;
+      transition: all 0.3s ease !important;
+    }
+    #sib-container .input:focus {
+      border-color: var(--accent-blue) !important;
+      outline: none !important;
+      box-shadow: 0 0 0 3px var(--glow-blue) !important;
+    }
+    #sib-container .input::placeholder {
+      color: var(--text-muted) !important;
+    }
+    #sib-container .entry__label {
+      color: var(--text-secondary) !important;
+      font-family: 'Inter', sans-serif !important;
+      font-size: 0.9rem !important;
+      font-weight: 500 !important;
+      margin-bottom: 12px !important;
     }
     #sib-container .sib-form-block__button {
       background: linear-gradient(135deg, var(--accent-blue), var(--accent-indigo)) !important;
       border-radius: 10px !important;
       font-weight: 700 !important;
+      width: 100% !important;
+      padding: 16px 32px !important;
+      transition: all 0.3s ease !important;
+    }
+    #sib-container .sib-form-block__button:hover {
+      transform: translateY(-2px) !important;
+      box-shadow: 0 8px 30px rgba(59, 130, 246, 0.4) !important;
+    }
+    #sib-container .entry__error {
+      background: rgba(239, 68, 68, 0.1) !important;
+      border: 1px solid rgba(239, 68, 68, 0.3) !important;
+      color: var(--accent-red) !important;
+      border-radius: 8px !important;
+      padding: 8px 12px !important;
+      margin-top: 8px !important;
+    }
+    #sib-container .entry__specification {
+      color: var(--text-muted) !important;
+      font-size: 0.75rem !important;
+    }
+    .sib-form {
+      background: transparent !important;
     }
     
     footer { padding: 60px 0; border-top: 1px solid var(--border-color); text-align: center; }
@@ -880,71 +923,84 @@
           </div>
         </div>
 
-        <div id="sib-container" class="sib-container--large sib-container--vertical">
-          <div id="success-message" style="display: none; text-align: center; padding: 40px; background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 16px;">
-            <i data-lucide="mail" style="width: 48px; height: 48px; color: var(--accent-blue); margin-bottom: 16px;"></i>
-            <h3 style="color: var(--accent-blue); margin-bottom: 12px; font-size: 1.5rem;">Check Your Email</h3>
-            <p style="color: var(--text-secondary); margin-bottom: 8px;">We've sent a confirmation email to your inbox.</p>
-            <p style="color: var(--text-primary); font-weight: 600;">Click the confirmation button in the email to secure your alpha waitlist spot.</p>
+        <div class="sib-form" style="text-align: center; background-color: transparent;">
+          <div id="sib-form-container" class="sib-form-container">
+            <div id="success-message" style="display: none; text-align: center; padding: 40px; background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 16px;">
+              <i data-lucide="mail" style="width: 48px; height: 48px; color: var(--accent-blue); margin-bottom: 16px;"></i>
+              <h3 style="color: var(--accent-blue); margin-bottom: 12px; font-size: 1.5rem;">Check Your Email</h3>
+              <p style="color: var(--text-secondary); margin-bottom: 8px;">We've sent a confirmation email to your inbox.</p>
+              <p style="color: var(--text-primary); font-weight: 600;">Click the confirmation button in the email to secure your alpha waitlist spot.</p>
+            </div>
+            
+            <div id="sib-container" class="sib-container--large sib-container--vertical" style="text-align:center; background-color:var(--bg-card); max-width:540px; border-radius:16px; border-width:1px; border-color:var(--border-color); border-style:solid; padding: 32px;">
+              <form id="sib-form" method="POST" action="https://b6e4e61b.sibforms.com/serve/MUIFAHK9RmYAIHXbig-so8qQS_hLh1tR9pOYsq9pQZYdXCGtd8RVm_z5N9CIVFc_GDuuhV3C0mGZz1PMwiXL-qorhW1wv0tNr-2pisVk1TvSUdd_d8S6a4fWaH2mOsOdA_7LHqdxfNchqbCnTlWkpZGxG1GK92IgvpPPM2ZlTC06pdd2yzApOLv3wJKU3DnaZwwH2gz-ixBK2PuY">
+                <div style="padding: 8px 0;">
+                  <div class="sib-form-block" style="font-size:32px; text-align:left; font-weight:700; font-family:Helvetica, sans-serif; color:#3C4858; background-color:transparent; text-align:left">
+                    <p style="color: var(--text-primary); margin-bottom: 24px;">Join the Waitlist</p>
+                  </div>
+                </div>
+                <div style="padding: 8px 0;">
+                  <div class="sib-input sib-form-block">
+                    <div class="form__entry entry_block">
+                      <div class="form__label-row ">
+                        <label class="entry__label" style="font-weight: 700; text-align:left; font-size:16px; text-align:left; font-weight:700; font-family:Helvetica, sans-serif; color:var(--text-secondary);" for="EMAIL" data-required="*">Enter your email address to join the waitlist</label>
+
+                        <div class="entry__field">
+                          <input class="input " type="text" id="EMAIL" name="EMAIL" autocomplete="off" placeholder="EMAIL" data-required="true" required />
+                        </div>
+                      </div>
+
+                      <label class="entry__error entry__error--primary" style="font-size:16px; text-align:left; font-family:Helvetica, sans-serif; color:#661d1d; background-color:#ffeded; border-radius:3px; border-color:#ff4949;">
+                      </label>
+                      <label class="entry__specification" style="font-size:12px; text-align:left; font-family:Helvetica, sans-serif; color:#8390A4; text-align:left">
+                        Provide your email address to subscribe. For e.g abc@xyz.com
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div style="padding: 8px 0;">
+                  <div class="sib-input sib-form-block">
+                    <div class="form__entry entry_block">
+                      <div class="form__label-row ">
+                        <label class="entry__label" style="font-weight: 700; text-align:left; font-size:16px; text-align:left; font-weight:700; font-family:Helvetica, sans-serif; color:var(--text-secondary);" for="ACCOUNT_SIZE">Account size range (optional)</label>
+
+                        <div class="entry__field">
+                          <select class="input" id="ACCOUNT_SIZE" name="ACCOUNT_SIZE" style="width: 100%; padding: 16px 20px; border-radius: 10px; background: var(--bg-primary); border: 1px solid var(--border-color); color: var(--text-primary); font-family: 'Inter', sans-serif; font-size: 1rem; cursor: pointer;">
+                            <option value="">Select account size...</option>
+                            <option value="under-25k">Under $25,000</option>
+                            <option value="25k-100k">$25,000 - $100,000</option>
+                            <option value="100k-250k">$100,000 - $250,000</option>
+                            <option value="250k-500k">$250,000 - $500,000</option>
+                            <option value="500k-1m">$500,000 - $1,000,000</option>
+                            <option value="over-1m">Over $1,000,000</option>
+                          </select>
+                        </div>
+                      </div>
+                      <label class="entry__specification" style="font-size:12px; text-align:left; font-family:Helvetica, sans-serif; color:#8390A4; text-align:left">
+                        Helps us tailor follow-up communications
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div style="padding: 8px 0;">
+                  <div class="sib-form-block" style="text-align: left">
+                    <button class="sib-form-block__button sib-form-block__button-with-loader" style="font-size:16px; text-align:left; font-weight:700; font-family:Helvetica, sans-serif; color:#FFFFFF; background-color:#3E4857; border-radius:3px; border-width:0px;" form="sib-form" type="submit">
+                      <svg class="icon clickable__icon progress-indicator__icon sib-hide-loader-icon" viewBox="0 0 512 512">
+                        <path d="M460.116 373.846l-20.823-12.022c-5.541-3.199-7.54-10.159-4.663-15.874 30.137-59.886 28.343-131.652-5.386-189.946-33.641-58.394-94.896-95.833-161.827-99.676C261.028 55.961 256 50.751 256 44.352V20.309c0-6.904 5.808-12.337 12.703-11.982 83.556 4.306 160.163 50.864 202.11 123.677 42.063 72.696 44.079 162.316 6.031 236.832-3.14 6.148-10.75 8.461-16.728 5.01z" />
+                      </svg>
+                      JOIN WAITLIST
+                    </button>
+                  </div>
+                </div>
+                <input type="text" name="email_address_check" value="" class="input--hidden">
+                <input type="hidden" name="locale" value="en">
+                <input type="hidden" name="html_type" value="simple">
+              </form>
+            </div>
           </div>
-          
-          <form id="sib-form" method="POST" action="https://b6e4e61b.sibforms.com/serve/MUIFAHK9RmYAIHXbig-so8qQS_hLh1tR9pOYsq9pQZYdXCGtd8RVm_z5N9CIVFc_GDuuhV3C0mGZz1PMwiXL-qorhW1wv0tNr-2pisVk1TvSUdd_d8S6a4fWaH2mOsOdA_7LHqdxfNchqbCnTlWkpZGxG1GK92IgvpPPM2ZlTC06pdd2yzApOLv3wJKU3DnaZwwH2gz-ixBK2PuY">
-            <div style="padding: 8px 0;">
-              <div class="sib-form-block" style="font-size:24px; text-align:center; font-weight:700; font-family:Helvetica, sans-serif; color:#3C4858; background-color:transparent;">
-                <p style="color: var(--text-primary); margin-bottom: 24px;">REQUEST ALPHA ACCESS</p>
-              </div>
-            </div>
-            
-            <div style="padding: 8px 0;">
-              <div class="sib-input sib-form-block">
-                <div class="form__entry entry_block">
-                  <div class="form__label-row">
-                    <label class="entry__label" for="EMAIL" data-required="*" style="display: none;">Email</label>
-                    <div class="entry__field">
-                      <input class="input" type="email" id="EMAIL" name="EMAIL" autocomplete="off" placeholder="Enter your email address" data-required="true" required style="width: 100%; padding: 16px 20px; border-radius: 10px; background: var(--bg-primary); border: 1px solid var(--border-color); color: var(--text-primary); font-family: 'Inter', sans-serif; font-size: 1rem; margin-bottom: 16px;" />
-                    </div>
-                  </div>
-                  <label class="entry__error entry__error--primary" style="display: none;"></label>
-                </div>
-              </div>
-            </div>
-
-            <div style="padding: 8px 0;">
-              <div class="sib-input sib-form-block">
-                <div class="form__entry entry_block">
-                  <div class="form__label-row">
-                    <label class="entry__label" for="ACCOUNT_SIZE" style="display: none;">Account Size</label>
-                    <div class="entry__field">
-                      <select class="input" id="ACCOUNT_SIZE" name="ACCOUNT_SIZE" style="width: 100%; padding: 16px 20px; border-radius: 10px; background: var(--bg-primary); border: 1px solid var(--border-color); color: var(--text-primary); font-family: 'Inter', sans-serif; font-size: 1rem; margin-bottom: 16px; cursor: pointer;">
-                        <option value="">Account size range (optional)</option>
-                        <option value="under-25k">Under $25,000</option>
-                        <option value="25k-100k">$25,000 - $100,000</option>
-                        <option value="100k-250k">$100,000 - $250,000</option>
-                        <option value="250k-500k">$250,000 - $500,000</option>
-                        <option value="500k-1m">$500,000 - $1,000,000</option>
-                        <option value="over-1m">Over $1,000,000</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div style="padding: 8px 0;">
-              <div class="sib-form-block" style="text-align: center">
-                <button class="sib-form-block__button sib-form-block__button-with-loader" form="sib-form" type="submit" style="width: 100%; padding: 16px 32px; border-radius: 10px; background: linear-gradient(135deg, var(--accent-blue), var(--accent-indigo)); color: white; border: none; font-weight: 700; font-size: 1rem; cursor: pointer; transition: all 0.3s ease;">
-                  JOIN WAITLIST
-                </button>
-              </div>
-            </div>
-            
-            <input type="text" name="email_address_check" value="" class="input--hidden" style="display: none;">
-            <input type="hidden" name="locale" value="en">
-            <input type="hidden" name="html_type" value="simple">
-          </form>
-          
-          <p style="text-align: center; font-size: 0.75rem; color: var(--text-muted); margin-top: 16px;">Limited batch invites sent weekly.</p>
         </div>
+        
+        <p style="text-align: center; font-size: 0.75rem; color: var(--text-muted); margin-top: 16px;">Limited batch invites sent weekly.</p>
 
         <script>
           // Handle form submission
@@ -961,7 +1017,7 @@
               mode: 'no-cors' // Brevo doesn't support CORS, so we use no-cors
             }).then(() => {
               // Hide form and show success message
-              document.getElementById('sib-container').querySelector('form').style.display = 'none';
+              document.getElementById('sib-form-container').querySelector('#sib-container').style.display = 'none';
               document.getElementById('success-message').style.display = 'block';
 
               // Re-initialize Lucide icons for the success message
@@ -971,7 +1027,7 @@
             }).catch((error) => {
               console.error('Error:', error);
               // Still show success since no-cors doesn't give us response
-              document.getElementById('sib-container').querySelector('form').style.display = 'none';
+              document.getElementById('sib-form-container').querySelector('#sib-container').style.display = 'none';
               document.getElementById('success-message').style.display = 'block';
 
               if (typeof lucide !== 'undefined') {
