@@ -482,6 +482,26 @@
       border-color: var(--accent-blue);
     }
 
+    /* Founding Perks */
+    .perks-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      text-align: left;
+      margin-top: 32px;
+    }
+    .perk-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      color: var(--text-secondary);
+    }
+    .perk-icon {
+      color: var(--accent-blue);
+      flex-shrink: 0;
+      margin-top: 4px;
+    }
+
     /* General Styles */
     .section-header { text-align: center; margin-bottom: 60px; }
     .section-header h2 { font-size: 2.5rem; font-weight: 700; margin-bottom: 16px; }
@@ -533,7 +553,7 @@
         <i data-lucide="trending-up" class="logo-icon"></i>
         <span class="logo-text">Trade Conductor</span>
       </a>
-      <a href="#waitlist" class="nav-cta">Join Alpha Waitlist</a>
+      <a href="#waitlist" class="nav-cta">Request Alpha Access</a>
     </div>
   </nav>
 
@@ -549,17 +569,17 @@
           <ul class="hero-bullets" style="list-style: none; padding: 0; margin-bottom: 32px;">
             <li style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px; color: var(--text-secondary);">
               <i data-lucide="shield-check" style="width: 20px; height: 20px; color: var(--accent-blue);"></i>
-              Go-to-cash on 15% drawdowns
+              Go-to-cash with ATR-based drawdowns
             </li>
             <li style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px; color: var(--text-secondary);">
               <i data-lucide="zap" style="width: 20px; height: 20px; color: var(--accent-blue);"></i>
-              Profit ratchet to lock in +20% gains
+              Profit ratchet to lock in gains
             </li>
           </ul>
 
           <a href="#waitlist" class="hero-cta">
             <i data-lucide="shield" style="width: 20px; height: 20px;"></i>
-            Secure Your Spot
+            Request Alpha Access
           </a>
         </div>
         <div class="hero-visual">
@@ -744,13 +764,13 @@
   <section class="social-proof" style="background: var(--bg-secondary); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
     <div class="container">
       <div class="section-header">
-        <h2>Why the community is waiting for "The Shield"</h2>
-        <p>We're talking to Composer power-users every day to build the exact risk tools they need. Here's what they're looking for.</p>
+        <h2>The Founding Member Roadmap</h2>
+        <p>We're collaborating with Composer power-users to build the exact risk tools missing from the platform. Here's why they're signing up.</p>
       </div>
 
       <div class="testimonials-grid">
         <div class="testimonial-card">
-          <p class="testimonial-quote">"Finally, a way to add a hard stop to TQQQ without manual babysitting. This is the missing piece for Composer users who trade leveraged ETFs."</p>
+          <p class="testimonial-quote">"I'm joining the Alpha specifically for the Flash Crash Airbag. Composer is great, but manually watching drawdowns is a full-time job I don't want."</p>
           <div class="testimonial-author">
             <div class="author-avatar"><i data-lucide="hourglass" style="width: 16px;"></i></div>
             <div class="author-info">
@@ -761,7 +781,7 @@
         </div>
 
         <div class="testimonial-card">
-          <p class="testimonial-quote">"The trailing profit logic sounds exactly like what my runners need. I’ve lost too many gains to retracements while waiting for a weekly rebalance."</p>
+          <p class="testimonial-quote">"The trailing profit ratchet is the big value add for me. Locking in gains on a mid-week run rather than waiting for the rebalance is a game changer."</p>
           <div class="testimonial-author">
             <div class="author-avatar"><i data-lucide="hourglass" style="width: 16px;"></i></div>
             <div class="author-info">
@@ -772,7 +792,7 @@
         </div>
 
         <div class="testimonial-card">
-          <p class="testimonial-quote">"Security was my main concern, but the trade-only API architecture is the right call. It feels much safer than sharing my full login details."</p>
+          <p class="testimonial-quote">"What sold me on joining early was the architectural safety. Read/Trade only API access is the only way I'd ever connect a 3rd party tool to my port."</p>
           <div class="testimonial-author">
             <div class="author-avatar"><i data-lucide="hourglass" style="width: 16px;"></i></div>
             <div class="author-info">
@@ -828,17 +848,46 @@
   </section>
 
   <!-- CTA Section -->
-  <section class="cta" id="waitlist" style="padding: 120px 0;">
-    <div class="container" style="max-width: 600px; text-align: center;">
-      <h2 style="font-size: 3rem; margin-bottom: 20px;">Join the <span class="gradient">Alpha</span></h2>
-      <p style="color: var(--text-secondary); margin-bottom: 40px;">Stress-test the "Shield" logic. Founding members get lifetime discounts.</p>
-      
-      <div id="sib-container">
-        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px;">ENTER YOUR EMAIL TO JOIN THE WAITLIST</p>
-        <form id="sib-form" method="POST" action="YOUR_BREVO_ACTION_URL">
-          <input type="email" name="EMAIL" placeholder="trader@example.com" required style="width: 100%; padding: 16px; border-radius: 12px; background: var(--bg-primary); border: 1px solid var(--border-color); color: white; margin-bottom: 16px;">
-          <button type="submit" style="width: 100%; padding: 16px; border-radius: 12px; background: linear-gradient(135deg, var(--accent-blue), var(--accent-indigo)); color: white; border: none; font-weight: 700; cursor: pointer;">JOIN WAITLIST</button>
-        </form>
+  <section class="cta" id="waitlist" style="padding: 120px 0; position: relative;">
+    <div class="container" style="max-width: 900px;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
+        <div style="text-align: left;">
+          <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Join the <span class="gradient">Alpha</span></h2>
+          <p style="color: var(--text-secondary); margin-bottom: 32px;">We're opening spots in batches. Founding members get direct access to the team and exclusive lifetime benefits.</p>
+          
+          <div class="perks-list">
+            <div class="perk-item">
+              <i data-lucide="award" class="perk-icon"></i>
+              <div>
+                <strong>Lifetime Founding Rate</strong>
+                <p style="font-size: 0.85rem; color: var(--text-muted);">Lock in the lowest price we'll ever offer, forever.</p>
+              </div>
+            </div>
+            <div class="perk-item">
+              <i data-lucide="git-pull-request" class="perk-icon"></i>
+              <div>
+                <strong>Direct Roadmap Voting</strong>
+                <p style="font-size: 0.85rem; color: var(--text-muted);">Request and vote on the next risk modules we build.</p>
+              </div>
+            </div>
+            <div class="perk-item">
+              <i data-lucide="message-square" class="perk-icon"></i>
+              <div>
+                <strong>Private Alpha Channel</strong>
+                <p style="font-size: 0.85rem; color: var(--text-muted);">Connect directly with the developers and other quant builders.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="sib-container">
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px; text-align: center; font-weight: 700;">REQUEST ALPHA ACCESS</p>
+          <form id="sib-form" method="POST" action="YOUR_BREVO_ACTION_URL">
+            <input type="email" name="EMAIL" placeholder="trader@example.com" required style="width: 100%; padding: 16px; border-radius: 12px; background: var(--bg-primary); border: 1px solid var(--border-color); color: white; margin-bottom: 16px;">
+            <button type="submit" style="width: 100%; padding: 16px; border-radius: 12px; background: linear-gradient(135deg, var(--accent-blue), var(--accent-indigo)); color: white; border: none; font-weight: 700; cursor: pointer;">REQUEST ALPHA ACCESS</button>
+          </form>
+          <p style="text-align: center; font-size: 0.75rem; color: var(--text-muted); margin-top: 16px;">Limited batch invites sent weekly.</p>
+        </div>
       </div>
     </div>
   </section>
