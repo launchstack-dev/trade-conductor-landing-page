@@ -23,20 +23,26 @@
 
   <style>
     :root {
-      --bg-primary: #030712;
-      --bg-secondary: #0a0f1a;
-      --bg-card: #111827;
-      --bg-card-hover: #1f2937;
-      --text-primary: #f9fafb;
-      --text-secondary: #9ca3af;
-      --text-muted: #6b7280;
-      --accent-blue: #3b82f6;
-      --accent-indigo: #6366f1;
+      /* Deep Slate & Neon Design System */
+      --bg-primary: #0B0F19;
+      --bg-secondary: #131B2C;
+      --bg-card: #131B2C;
+      --bg-card-hover: #1C2538;
+      --bg-glass: rgba(19, 27, 44, 0.6);
+      --text-primary: #F0F4F8;
+      --text-secondary: #94A3B8;
+      --text-muted: #64748B;
+      --accent-blue: #38BDF8;
+      --accent-indigo: #818CF8;
       --accent-green: #10b981;
       --accent-red: #ef4444;
-      --border-color: #1f2937;
-      --glow-blue: rgba(59, 130, 246, 0.15);
+      --accent-warning: #F59E0B;
+      --border-color: rgba(148, 163, 184, 0.1);
+      --border-glass: rgba(255, 255, 255, 0.08);
+      --glow-blue: rgba(56, 189, 248, 0.15);
       --glow-red: rgba(239, 68, 68, 0.15);
+      --shadow-neon: 0 0 20px rgba(56, 189, 248, 0.15);
+      --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.15);
     }
 
     * {
@@ -67,9 +73,10 @@
       width: 100%;
       height: 100%;
       background-image:
-        linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
-      background-size: 60px 60px;
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
       pointer-events: none;
       z-index: 0;
     }
@@ -81,10 +88,74 @@
       width: 100%;
       height: 100%;
       background:
-        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(59, 130, 246, 0.15), transparent),
-        radial-gradient(ellipse 60% 40% at 80% 60%, rgba(99, 102, 241, 0.08), transparent);
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(56, 189, 248, 0.12), transparent),
+        radial-gradient(ellipse 60% 40% at 80% 60%, rgba(129, 140, 248, 0.08), transparent);
       pointer-events: none;
       z-index: 0;
+    }
+
+    /* Glassmorphism Utilities */
+    .glass-panel {
+      background: var(--bg-glass);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border-glass);
+    }
+
+    .glass-header {
+      background: rgba(11, 15, 25, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* Text Gradients */
+    .text-gradient-primary {
+      background: linear-gradient(135deg, #FFFFFF 0%, #94A3B8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .text-gradient-neon {
+      background: linear-gradient(135deg, #38BDF8 0%, #818CF8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Animated Status Dot */
+    .status-dot {
+      position: relative;
+      display: inline-flex;
+      width: 8px;
+      height: 8px;
+    }
+
+    .status-dot-ping {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: var(--accent-green);
+      animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+      opacity: 0.75;
+    }
+
+    .status-dot-core {
+      position: relative;
+      border-radius: 50%;
+      width: 8px;
+      height: 8px;
+      background: var(--accent-green);
+    }
+
+    @keyframes ping {
+
+      75%,
+      100% {
+        transform: scale(2);
+        opacity: 0;
+      }
     }
 
     .container {
@@ -103,9 +174,10 @@
       right: 0;
       z-index: 100;
       padding: 16px 0;
-      background: rgba(3, 7, 18, 0.8);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border-color);
+      background: rgba(11, 15, 25, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     .nav-content {
@@ -138,20 +210,23 @@
 
     .nav-cta {
       padding: 10px 20px;
-      background: linear-gradient(135deg, var(--accent-blue), var(--accent-indigo));
-      color: white;
-      border: none;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.5);
+      color: var(--accent-blue);
       border-radius: 8px;
       font-weight: 600;
       font-size: 0.875rem;
       cursor: pointer;
       transition: all 0.3s ease;
       text-decoration: none;
+      box-shadow: var(--shadow-neon);
     }
 
     .nav-cta:hover {
+      background: var(--accent-blue);
+      color: var(--bg-primary);
       transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(59, 130, 246, 0.3);
+      box-shadow: 0 8px 30px rgba(56, 189, 248, 0.4);
     }
 
     /* Hero Section */
@@ -217,20 +292,44 @@
       align-items: center;
       gap: 10px;
       padding: 16px 32px;
-      background: linear-gradient(135deg, var(--accent-blue), var(--accent-indigo));
-      color: white;
+      background: var(--accent-blue);
+      color: var(--bg-primary);
       border: none;
       border-radius: 12px;
-      font-weight: 600;
+      font-weight: 700;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      box-shadow: var(--shadow-neon);
+    }
+
+    .hero-cta:hover {
+      filter: brightness(1.1);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(56, 189, 248, 0.4);
+    }
+
+    .hero-cta-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 32px;
+      background: var(--bg-glass);
+      backdrop-filter: blur(12px);
+      color: var(--text-primary);
+      border: 1px solid var(--border-glass);
+      border-radius: 12px;
+      font-weight: 500;
       font-size: 1.1rem;
       cursor: pointer;
       transition: all 0.3s ease;
       text-decoration: none;
     }
 
-    .hero-cta:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 40px rgba(59, 130, 246, 0.4);
+    .hero-cta-secondary:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--accent-blue);
     }
 
     .hero-visual {
@@ -379,8 +478,13 @@
       font-weight: 600;
     }
 
-    .status-allowed { color: var(--accent-green); }
-    .status-denied { color: var(--text-muted); }
+    .status-allowed {
+      color: var(--accent-green);
+    }
+
+    .status-denied {
+      color: var(--text-muted);
+    }
 
     .protocol-list {
       display: flex;
@@ -401,7 +505,16 @@
     }
 
     .protocol-icon {
-      width: 44px; height: 44px; background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--accent-blue); flex-shrink: 0;
+      width: 44px;
+      height: 44px;
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-blue);
+      flex-shrink: 0;
     }
 
     /* Social Proof Section */
@@ -463,23 +576,46 @@
     }
 
     /* Features Section */
-    .features { padding: 100px 0; }
+    .features {
+      padding: 100px 0;
+    }
+
     .features-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 24px;
     }
+
     .feature-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
+      background: var(--bg-glass);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border-glass);
       border-radius: 16px;
       padding: 32px;
       transition: all 0.3s ease;
     }
+
     .feature-card:hover {
-      background: var(--bg-card-hover);
+      background: rgba(19, 27, 44, 0.8);
       transform: translateY(-4px);
-      border-color: var(--accent-blue);
+      border-color: rgba(56, 189, 248, 0.3);
+    }
+
+    .feature-icon-wrapper {
+      width: 48px;
+      height: 48px;
+      background: var(--bg-card-hover);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      transition: transform 0.3s ease;
+    }
+
+    .feature-card:hover .feature-icon-wrapper {
+      transform: scale(1.1);
     }
 
     /* Founding Perks */
@@ -490,12 +626,14 @@
       text-align: left;
       margin-top: 32px;
     }
+
     .perk-item {
       display: flex;
       gap: 12px;
       align-items: flex-start;
       color: var(--text-secondary);
     }
+
     .perk-icon {
       color: var(--accent-blue);
       flex-shrink: 0;
@@ -503,20 +641,55 @@
     }
 
     /* General Styles */
-    .section-header { text-align: center; margin-bottom: 60px; }
-    .section-header h2 { font-size: 2.5rem; font-weight: 700; margin-bottom: 16px; }
-    .section-header p { font-size: 1.1rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-header h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .section-header p {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+    }
 
     /* Responsive */
     @media (max-width: 1024px) {
-      .hero-content, .security-container, .testimonials-grid { grid-template-columns: 1fr; }
-      .hero-text { text-align: center; }
-      .hero-bullets { display: inline-block; text-align: left; }
-      .features-grid { grid-template-columns: repeat(2, 1fr); }
+
+      .hero-content,
+      .security-container,
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-text {
+        text-align: center;
+      }
+
+      .hero-bullets {
+        display: inline-block;
+        text-align: left;
+      }
+
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
+
     @media (max-width: 768px) {
-      .features-grid { grid-template-columns: 1fr; }
-      h1 { font-size: 2.25rem; }
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 2.25rem;
+      }
     }
 
     /* Brevo Form Styling Override */
@@ -526,6 +699,7 @@
       border-radius: 16px !important;
       padding: 32px !important;
     }
+
     #sib-container .input {
       background: var(--bg-primary) !important;
       border: 1px solid var(--border-color) !important;
@@ -537,14 +711,17 @@
       width: 100% !important;
       transition: all 0.3s ease !important;
     }
+
     #sib-container .input:focus {
       border-color: var(--accent-blue) !important;
       outline: none !important;
       box-shadow: 0 0 0 3px var(--glow-blue) !important;
     }
+
     #sib-container .input::placeholder {
       color: var(--text-muted) !important;
     }
+
     #sib-container .entry__label {
       color: var(--text-secondary) !important;
       font-family: 'Inter', sans-serif !important;
@@ -552,6 +729,7 @@
       font-weight: 500 !important;
       margin-bottom: 12px !important;
     }
+
     #sib-container .sib-form-block__button {
       background: linear-gradient(135deg, var(--accent-blue), var(--accent-indigo)) !important;
       border-radius: 10px !important;
@@ -560,10 +738,12 @@
       padding: 16px 32px !important;
       transition: all 0.3s ease !important;
     }
+
     #sib-container .sib-form-block__button:hover {
       transform: translateY(-2px) !important;
       box-shadow: 0 8px 30px rgba(59, 130, 246, 0.4) !important;
     }
+
     #sib-container .entry__error {
       background: rgba(239, 68, 68, 0.1) !important;
       border: 1px solid rgba(239, 68, 68, 0.3) !important;
@@ -572,16 +752,31 @@
       padding: 8px 12px !important;
       margin-top: 8px !important;
     }
+
     #sib-container .entry__specification {
       color: var(--text-muted) !important;
       font-size: 0.75rem !important;
     }
+
     .sib-form {
       background: transparent !important;
     }
-    
-    footer { padding: 60px 0; border-top: 1px solid var(--border-color); text-align: center; }
-    .footer-disclaimer { font-size: 0.75rem; color: var(--text-muted); margin-top: 24px; line-height: 1.6; max-width: 800px; margin-inline: auto; opacity: 0.6; }
+
+    footer {
+      padding: 60px 0;
+      border-top: 1px solid var(--border-color);
+      text-align: center;
+    }
+
+    .footer-disclaimer {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 24px;
+      line-height: 1.6;
+      max-width: 800px;
+      margin-inline: auto;
+      opacity: 0.6;
+    }
   </style>
 </head>
 
@@ -605,66 +800,127 @@
     <div class="container">
       <div class="hero-content">
         <div class="hero-text">
-          <div class="hero-badge"><span class="hero-badge-dot"></span>Alpha Access Opening Soon</div>
+          <div class="hero-badge">
+            <span class="status-dot">
+              <span class="status-dot-ping"></span>
+              <span class="status-dot-core"></span>
+            </span>
+            <span
+              style="font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.05em;">Alpha
+              Access Opening Soon</span>
+          </div>
           <h1>The <span class="gradient">Hedge Fund</span> Risk Layer for Composer.</h1>
-          <div class="hero-subtitle">Automated circuit breakers, trailing stops, and profit harvesting for your algorithmic strategies.</div>
-          
+          <div class="hero-subtitle">Automated circuit breakers, trailing stops, and profit harvesting for your
+            algorithmic strategies.</div>
+
           <ul class="hero-bullets" style="list-style: none; padding: 0; margin-bottom: 32px;">
-            <li style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px; color: var(--text-secondary);">
+            <li
+              style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px; color: var(--text-secondary);">
               <i data-lucide="shield-check" style="width: 20px; height: 20px; color: var(--accent-blue);"></i>
               Go-to-cash with ATR-based drawdowns
             </li>
-            <li style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px; color: var(--text-secondary);">
+            <li
+              style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px; color: var(--text-secondary);">
               <i data-lucide="zap" style="width: 20px; height: 20px; color: var(--accent-blue);"></i>
               Profit ratchet to lock in gains
             </li>
           </ul>
 
-          <a href="#waitlist" class="hero-cta">
-            <i data-lucide="shield" style="width: 20px; height: 20px;"></i>
-            Request Alpha Access
-          </a>
+          <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+            <a href="#waitlist" class="hero-cta">
+              <i data-lucide="arrow-right" style="width: 20px; height: 20px;"></i>
+              Request Alpha Access
+            </a>
+            <a href="#features" class="hero-cta-secondary">
+              <i data-lucide="play-circle" style="width: 20px; height: 20px; opacity: 0.7;"></i>
+              View Features
+            </a>
+          </div>
         </div>
         <div class="hero-visual">
           <div class="app-preview-glow"></div>
-          <img src="hero_dashboard_updated_1764783197194.png" alt="Dashboard Preview" class="app-preview" onerror="this.src='https://images.unsplash.com/photo-1611974714658-9426f04d7328?auto=format&fit=crop&q=80&w=1200'">
+          <img src="hero_dashboard_updated_1764783197194.png" alt="Dashboard Preview" class="app-preview"
+            onerror="this.src='https://images.unsplash.com/photo-1611974714658-9426f04d7328?auto=format&fit=crop&q=80&w=1200'">
         </div>
       </div>
     </div>
   </section>
+
+  <!-- Metrics Strip -->
+  <div
+    style="border-top: 1px solid var(--border-glass); border-bottom: 1px solid var(--border-glass); background: rgba(19, 27, 44, 0.3); backdrop-filter: blur(12px);">
+    <div class="container" style="padding-top: 48px; padding-bottom: 48px;">
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; text-align: center;">
+        <div>
+          <div
+            style="font-size: 2.5rem; font-weight: 700; font-family: 'JetBrains Mono', monospace; color: var(--text-primary); margin-bottom: 4px;">
+            24/7</div>
+          <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em;">
+            Risk Monitoring</div>
+        </div>
+        <div style="border-left: 1px solid var(--border-glass);">
+          <div
+            style="font-size: 2.5rem; font-weight: 700; font-family: 'JetBrains Mono', monospace; color: var(--text-primary); margin-bottom: 4px;">
+            &lt;50ms</div>
+          <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em;">
+            Execution Latency</div>
+        </div>
+        <div style="border-left: 1px solid var(--border-glass);">
+          <div
+            style="font-size: 2.5rem; font-weight: 700; font-family: 'JetBrains Mono', monospace; color: var(--text-primary); margin-bottom: 4px;">
+            100%</div>
+          <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em;">
+            Transparency</div>
+        </div>
+        <div style="border-left: 1px solid var(--border-glass);">
+          <div
+            style="font-size: 2.5rem; font-weight: 700; font-family: 'JetBrains Mono', monospace; color: var(--accent-green); margin-bottom: 4px;">
+            0</div>
+          <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em;">
+            External Fund Access</div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Chart Section (The Stoploss Proof) -->
   <section class="chart-section">
     <div class="container">
       <div class="section-header">
         <h2>The Cost of "Watching"</h2>
-        <p>Composer strategies are powerful, but they lack native circuit breakers. We simulated the 2022 crash to show the difference 100 lines of protective code makes.</p>
+        <p>Composer strategies are powerful, but they lack native circuit breakers. We simulated the 2022 crash to show
+          the difference 100 lines of protective code makes.</p>
       </div>
 
       <div class="chart-card">
         <div class="chart-header">
           <div>
             <h3 style="font-size: 1.25rem; margin-bottom: 4px;">2022 Market Crash Simulation</h3>
-            <p style="font-size: 0.85rem; color: var(--text-muted); font-family: 'JetBrains Mono', monospace;">BENCHMARK: TQQQ/UPRO CORE STRATEGY</p>
+            <p style="font-size: 0.85rem; color: var(--text-muted); font-family: 'JetBrains Mono', monospace;">
+              BENCHMARK: TQQQ/UPRO CORE STRATEGY</p>
           </div>
           <div class="chart-legend">
-            <div class="legend-item"><div class="legend-line" style="background: var(--accent-green);"></div>Trade Conductor</div>
-            <div class="legend-item"><div class="legend-line" style="background: var(--accent-red);"></div>Unprotected</div>
+            <div class="legend-item">
+              <div class="legend-line" style="background: var(--accent-green);"></div>Trade Conductor
+            </div>
+            <div class="legend-item">
+              <div class="legend-line" style="background: var(--accent-red);"></div>Unprotected
+            </div>
           </div>
         </div>
 
         <svg class="chart-svg" viewBox="0 0 800 350" preserveAspectRatio="none">
           <defs>
             <linearGradient id="greenArea" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="var(--accent-green)" stop-opacity="0.1"/>
-              <stop offset="100%" stop-color="var(--accent-green)" stop-opacity="0"/>
+              <stop offset="0%" stop-color="var(--accent-green)" stop-opacity="0.1" />
+              <stop offset="100%" stop-color="var(--accent-green)" stop-opacity="0" />
             </linearGradient>
             <linearGradient id="redArea" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="var(--accent-red)" stop-opacity="0.1"/>
-              <stop offset="100%" stop-color="var(--accent-red)" stop-opacity="0"/>
+              <stop offset="0%" stop-color="var(--accent-red)" stop-opacity="0.1" />
+              <stop offset="100%" stop-color="var(--accent-red)" stop-opacity="0" />
             </linearGradient>
           </defs>
-          
+
           <!-- Grid lines -->
           <g stroke="var(--border-color)" stroke-width="1" stroke-dasharray="4">
             <line x1="0" y1="50" x2="800" y2="50" />
@@ -680,25 +936,26 @@
           </g>
 
           <!-- Unprotected Strategy (Red) -->
-          <path d="M0,150 L100,140 L200,160 L300,130 L350,220 L450,280 L550,310 L650,320 L800,330" 
-                fill="none" stroke="var(--accent-red)" stroke-width="3" />
-          <path d="M0,150 L100,140 L200,160 L300,130 L350,220 L450,280 L550,310 L650,320 L800,330 L800,350 L0,350 Z" 
-                fill="url(#redArea)" />
+          <path d="M0,150 L100,140 L200,160 L300,130 L350,220 L450,280 L550,310 L650,320 L800,330" fill="none"
+            stroke="var(--accent-red)" stroke-width="3" />
+          <path d="M0,150 L100,140 L200,160 L300,130 L350,220 L450,280 L550,310 L650,320 L800,330 L800,350 L0,350 Z"
+            fill="url(#redArea)" />
 
           <!-- Protected Strategy (Green) -->
-          <path d="M0,150 L100,140 L200,160 L300,130 L310,145 L800,145" 
-                fill="none" stroke="var(--accent-green)" stroke-width="4" stroke-linecap="round" />
-          <path d="M0,150 L100,140 L200,160 L300,130 L310,145 L800,145 L800,350 L0,350 Z" 
-                fill="url(#greenArea)" />
+          <path d="M0,150 L100,140 L200,160 L300,130 L310,145 L800,145" fill="none" stroke="var(--accent-green)"
+            stroke-width="4" stroke-linecap="round" />
+          <path d="M0,150 L100,140 L200,160 L300,130 L310,145 L800,145 L800,350 L0,350 Z" fill="url(#greenArea)" />
 
           <!-- Callout -->
           <g transform="translate(310, 130)">
             <circle r="6" fill="var(--accent-green)" />
-            <rect x="10" y="-35" width="120" height="30" rx="4" fill="var(--bg-primary)" stroke="var(--accent-green)" stroke-width="1" />
-            <text x="70" y="-15" text-anchor="middle" fill="var(--accent-green)" font-weight="800" font-size="10">WENT TO CASH</text>
+            <rect x="10" y="-35" width="120" height="30" rx="4" fill="var(--bg-primary)" stroke="var(--accent-green)"
+              stroke-width="1" />
+            <text x="70" y="-15" text-anchor="middle" fill="var(--accent-green)" font-weight="800" font-size="10">WENT
+              TO CASH</text>
           </g>
         </svg>
-        
+
         <div style="text-align: center; margin-top: 32px; color: var(--text-muted); font-size: 0.9rem;">
           <i data-lucide="info" style="width: 14px; height: 14px; vertical-align: middle; margin-right: 4px;"></i>
           Based on 2022 historical data for Leveraged ETF strategies. Individual results vary.
@@ -712,7 +969,8 @@
     <div class="container">
       <div class="section-header">
         <h2>Built to be Architecturally Safe</h2>
-        <p>Your capital stays in your brokerage. We use restricted API protocols to ensure funds can never be moved externally.</p>
+        <p>Your capital stays in your brokerage. We use restricted API protocols to ensure funds can never be moved
+          externally.</p>
       </div>
 
       <div class="security-container">
@@ -725,7 +983,7 @@
               Active & Verified
             </div>
           </div>
-          
+
           <div class="permission-group-label">Requested Scopes</div>
 
           <div class="permission-item">
@@ -781,7 +1039,8 @@
             <div class="protocol-icon"><i data-lucide="key"></i></div>
             <div class="protocol-text">
               <h4>Non-Custodial Architecture</h4>
-              <p>We never hold your assets. You maintain full ownership and control inside your existing Composer account.</p>
+              <p>We never hold your assets. You maintain full ownership and control inside your existing Composer
+                account.</p>
             </div>
           </div>
           <div class="protocol-card">
@@ -804,16 +1063,19 @@
   </section>
 
   <!-- Social Proof Section -->
-  <section class="social-proof" style="background: var(--bg-secondary); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+  <section class="social-proof"
+    style="background: var(--bg-secondary); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
     <div class="container">
       <div class="section-header">
         <h2>The Founding Member Roadmap</h2>
-        <p>We're collaborating with Composer power-users to build the exact risk tools missing from the platform. Here's why they're signing up.</p>
+        <p>We're collaborating with Composer power-users to build the exact risk tools missing from the platform. Here's
+          why they're signing up.</p>
       </div>
 
       <div class="testimonials-grid">
         <div class="testimonial-card">
-          <p class="testimonial-quote">"I'm joining the Alpha specifically for the Flash Crash Airbag. Composer is great, but manually watching drawdowns is a full-time job I don't want."</p>
+          <p class="testimonial-quote">"I'm joining the Alpha specifically for the Flash Crash Airbag. Composer is
+            great, but manually watching drawdowns is a full-time job I don't want."</p>
           <div class="testimonial-author">
             <div class="author-avatar"><i data-lucide="hourglass" style="width: 16px;"></i></div>
             <div class="author-info">
@@ -824,7 +1086,8 @@
         </div>
 
         <div class="testimonial-card">
-          <p class="testimonial-quote">"The trailing profit ratchet is the big value add for me. Locking in gains on a mid-week run rather than waiting for the rebalance is a game changer."</p>
+          <p class="testimonial-quote">"The trailing profit ratchet is the big value add for me. Locking in gains on a
+            mid-week run rather than waiting for the rebalance is a game changer."</p>
           <div class="testimonial-author">
             <div class="author-avatar"><i data-lucide="hourglass" style="width: 16px;"></i></div>
             <div class="author-info">
@@ -835,7 +1098,8 @@
         </div>
 
         <div class="testimonial-card">
-          <p class="testimonial-quote">"What sold me on joining early was the architectural safety. Read/Trade only API access is the only way I'd ever connect a 3rd party tool to my port."</p>
+          <p class="testimonial-quote">"What sold me on joining early was the architectural safety. Read/Trade only API
+            access is the only way I'd ever connect a 3rd party tool to my port."</p>
           <div class="testimonial-author">
             <div class="author-avatar"><i data-lucide="hourglass" style="width: 16px;"></i></div>
             <div class="author-info">
@@ -857,32 +1121,44 @@
       </div>
       <div class="features-grid">
         <div class="feature-card">
-          <i data-lucide="shield-alert" style="color: var(--accent-blue); margin-bottom: 20px;"></i>
+          <div class="feature-icon-wrapper">
+            <i data-lucide="shield-alert" style="width: 24px; height: 24px; color: var(--accent-blue);"></i>
+          </div>
           <h3>Flash Crash Airbag</h3>
           <p>Automated liquidation when market volatility hits extreme thresholds.</p>
         </div>
         <div class="feature-card">
-          <i data-lucide="trending-up" style="color: var(--accent-blue); margin-bottom: 20px;"></i>
+          <div class="feature-icon-wrapper">
+            <i data-lucide="trending-up" style="width: 24px; height: 24px; color: var(--accent-indigo);"></i>
+          </div>
           <h3>The Profit Ratchet</h3>
           <p>Trailing profit stops that lock in gains while letting winners run.</p>
         </div>
         <div class="feature-card">
-          <i data-lucide="history" style="color: var(--accent-blue); margin-bottom: 20px;"></i>
+          <div class="feature-icon-wrapper">
+            <i data-lucide="history" style="width: 24px; height: 24px; color: var(--accent-green);"></i>
+          </div>
           <h3>The Time Machine</h3>
           <p>Backtest your risk rules against 2008, 2020, and 2022 scenarios.</p>
         </div>
         <div class="feature-card">
-          <i data-lucide="fingerprint" style="color: var(--accent-blue); margin-bottom: 20px;"></i>
+          <div class="feature-icon-wrapper">
+            <i data-lucide="fingerprint" style="width: 24px; height: 24px; color: var(--accent-blue);"></i>
+          </div>
           <h3>Drift Detective</h3>
           <p>Live alerts when execution slippage deviates from backtest models.</p>
         </div>
         <div class="feature-card">
-          <i data-lucide="layers" style="color: var(--accent-blue); margin-bottom: 20px;"></i>
+          <div class="feature-icon-wrapper">
+            <i data-lucide="layers" style="width: 24px; height: 24px; color: var(--accent-indigo);"></i>
+          </div>
           <h3>Correlation Guard</h3>
           <p>Real-time analysis to ensure your strategies aren't just one big bet.</p>
         </div>
         <div class="feature-card">
-          <i data-lucide="power" style="color: var(--accent-blue); margin-bottom: 20px;"></i>
+          <div class="feature-icon-wrapper">
+            <i data-lucide="power" style="width: 24px; height: 24px; color: var(--accent-red);"></i>
+          </div>
           <h3>Kill Switch</h3>
           <p>One-click emergency pause for all automated trading activity.</p>
         </div>
@@ -896,28 +1172,32 @@
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
         <div style="text-align: left;">
           <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Join the <span class="gradient">Alpha</span></h2>
-          <p style="color: var(--text-secondary); margin-bottom: 32px;">We're opening spots in batches. Founding members get direct access to the team and exclusive lifetime benefits.</p>
-          
+          <p style="color: var(--text-secondary); margin-bottom: 32px;">We're opening spots in batches. Founding members
+            get direct access to the team and exclusive lifetime benefits.</p>
+
           <div class="perks-list">
             <div class="perk-item">
               <i data-lucide="award" class="perk-icon"></i>
               <div>
                 <strong>Lifetime Founding Rate</strong>
-                <p style="font-size: 0.85rem; color: var(--text-muted);">Lock in the lowest price we'll ever offer, forever.</p>
+                <p style="font-size: 0.85rem; color: var(--text-muted);">Lock in the lowest price we'll ever offer,
+                  forever.</p>
               </div>
             </div>
             <div class="perk-item">
               <i data-lucide="git-pull-request" class="perk-icon"></i>
               <div>
                 <strong>Direct Roadmap Voting</strong>
-                <p style="font-size: 0.85rem; color: var(--text-muted);">Request and vote on the next risk modules we build.</p>
+                <p style="font-size: 0.85rem; color: var(--text-muted);">Request and vote on the next risk modules we
+                  build.</p>
               </div>
             </div>
             <div class="perk-item">
               <i data-lucide="message-square" class="perk-icon"></i>
               <div>
                 <strong>Private Alpha Channel</strong>
-                <p style="font-size: 0.85rem; color: var(--text-muted);">Connect directly with the developers and other quant builders.</p>
+                <p style="font-size: 0.85rem; color: var(--text-muted);">Connect directly with the developers and other
+                  quant builders.</p>
               </div>
             </div>
           </div>
@@ -925,17 +1205,24 @@
 
         <div class="sib-form" style="text-align: center; background-color: transparent;">
           <div id="sib-form-container" class="sib-form-container">
-            <div id="success-message" style="display: none; text-align: center; padding: 40px; background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 16px;">
-              <i data-lucide="mail" style="width: 48px; height: 48px; color: var(--accent-blue); margin-bottom: 16px;"></i>
+            <div id="success-message"
+              style="display: none; text-align: center; padding: 40px; background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 16px;">
+              <i data-lucide="mail"
+                style="width: 48px; height: 48px; color: var(--accent-blue); margin-bottom: 16px;"></i>
               <h3 style="color: var(--accent-blue); margin-bottom: 12px; font-size: 1.5rem;">Check Your Email</h3>
-              <p style="color: var(--text-secondary); margin-bottom: 8px;">We've sent a confirmation email to your inbox.</p>
-              <p style="color: var(--text-primary); font-weight: 600;">Click the confirmation button in the email to secure your alpha waitlist spot.</p>
+              <p style="color: var(--text-secondary); margin-bottom: 8px;">We've sent a confirmation email to your
+                inbox.</p>
+              <p style="color: var(--text-primary); font-weight: 600;">Click the confirmation button in the email to
+                secure your alpha waitlist spot.</p>
             </div>
-            
-            <div id="sib-container" class="sib-container--large sib-container--vertical" style="text-align:center; background-color:var(--bg-card); max-width:540px; border-radius:16px; border-width:1px; border-color:var(--border-color); border-style:solid; padding: 32px;">
-              <form id="sib-form" method="POST" action="https://b6e4e61b.sibforms.com/serve/MUIFAHK9RmYAIHXbig-so8qQS_hLh1tR9pOYsq9pQZYdXCGtd8RVm_z5N9CIVFc_GDuuhV3C0mGZz1PMwiXL-qorhW1wv0tNr-2pisVk1TvSUdd_d8S6a4fWaH2mOsOdA_7LHqdxfNchqbCnTlWkpZGxG1GK92IgvpPPM2ZlTC06pdd2yzApOLv3wJKU3DnaZwwH2gz-ixBK2PuY">
+
+            <div id="sib-container" class="sib-container--large sib-container--vertical"
+              style="text-align:center; background-color:var(--bg-card); max-width:540px; border-radius:16px; border-width:1px; border-color:var(--border-color); border-style:solid; padding: 32px;">
+              <form id="sib-form" method="POST"
+                action="https://b6e4e61b.sibforms.com/serve/MUIFAHK9RmYAIHXbig-so8qQS_hLh1tR9pOYsq9pQZYdXCGtd8RVm_z5N9CIVFc_GDuuhV3C0mGZz1PMwiXL-qorhW1wv0tNr-2pisVk1TvSUdd_d8S6a4fWaH2mOsOdA_7LHqdxfNchqbCnTlWkpZGxG1GK92IgvpPPM2ZlTC06pdd2yzApOLv3wJKU3DnaZwwH2gz-ixBK2PuY">
                 <div style="padding: 8px 0;">
-                  <div class="sib-form-block" style="font-size:32px; text-align:left; font-weight:700; font-family:Helvetica, sans-serif; color:#3C4858; background-color:transparent; text-align:left">
+                  <div class="sib-form-block"
+                    style="font-size:32px; text-align:left; font-weight:700; font-family:Helvetica, sans-serif; color:#3C4858; background-color:transparent; text-align:left">
                     <p style="color: var(--text-primary); margin-bottom: 24px;">Join the Waitlist</p>
                   </div>
                 </div>
@@ -943,16 +1230,21 @@
                   <div class="sib-input sib-form-block">
                     <div class="form__entry entry_block">
                       <div class="form__label-row ">
-                        <label class="entry__label" style="font-weight: 700; text-align:left; font-size:16px; text-align:left; font-weight:700; font-family:Helvetica, sans-serif; color:var(--text-secondary);" for="EMAIL" data-required="*">Enter your email address to join the waitlist</label>
+                        <label class="entry__label"
+                          style="font-weight: 700; text-align:left; font-size:16px; text-align:left; font-weight:700; font-family:Helvetica, sans-serif; color:var(--text-secondary);"
+                          for="EMAIL" data-required="*">Enter your email address to join the waitlist</label>
 
                         <div class="entry__field">
-                          <input class="input " type="text" id="EMAIL" name="EMAIL" autocomplete="off" placeholder="EMAIL" data-required="true" required />
+                          <input class="input " type="text" id="EMAIL" name="EMAIL" autocomplete="off"
+                            placeholder="EMAIL" data-required="true" required />
                         </div>
                       </div>
 
-                      <label class="entry__error entry__error--primary" style="font-size:16px; text-align:left; font-family:Helvetica, sans-serif; color:#661d1d; background-color:#ffeded; border-radius:3px; border-color:#ff4949;">
+                      <label class="entry__error entry__error--primary"
+                        style="font-size:16px; text-align:left; font-family:Helvetica, sans-serif; color:#661d1d; background-color:#ffeded; border-radius:3px; border-color:#ff4949;">
                       </label>
-                      <label class="entry__specification" style="font-size:12px; text-align:left; font-family:Helvetica, sans-serif; color:#8390A4; text-align:left">
+                      <label class="entry__specification"
+                        style="font-size:12px; text-align:left; font-family:Helvetica, sans-serif; color:#8390A4; text-align:left">
                         Provide your email address to subscribe. For e.g abc@xyz.com
                       </label>
                     </div>
@@ -962,10 +1254,13 @@
                   <div class="sib-input sib-form-block">
                     <div class="form__entry entry_block">
                       <div class="form__label-row ">
-                        <label class="entry__label" style="font-weight: 700; text-align:left; font-size:16px; text-align:left; font-weight:700; font-family:Helvetica, sans-serif; color:var(--text-secondary);" for="ACCOUNT_SIZE">Account size range (optional)</label>
+                        <label class="entry__label"
+                          style="font-weight: 700; text-align:left; font-size:16px; text-align:left; font-weight:700; font-family:Helvetica, sans-serif; color:var(--text-secondary);"
+                          for="ACCOUNT_SIZE">Account size range (optional)</label>
 
                         <div class="entry__field">
-                          <select class="input" id="ACCOUNT_SIZE" name="ACCOUNT_SIZE" style="width: 100%; padding: 16px 20px; border-radius: 10px; background: var(--bg-primary); border: 1px solid var(--border-color); color: var(--text-primary); font-family: 'Inter', sans-serif; font-size: 1rem; cursor: pointer;">
+                          <select class="input" id="ACCOUNT_SIZE" name="ACCOUNT_SIZE"
+                            style="width: 100%; padding: 16px 20px; border-radius: 10px; background: var(--bg-primary); border: 1px solid var(--border-color); color: var(--text-primary); font-family: 'Inter', sans-serif; font-size: 1rem; cursor: pointer;">
                             <option value="">Select account size...</option>
                             <option value="under-25k">Under $25,000</option>
                             <option value="25k-100k">$25,000 - $100,000</option>
@@ -976,7 +1271,8 @@
                           </select>
                         </div>
                       </div>
-                      <label class="entry__specification" style="font-size:12px; text-align:left; font-family:Helvetica, sans-serif; color:#8390A4; text-align:left">
+                      <label class="entry__specification"
+                        style="font-size:12px; text-align:left; font-family:Helvetica, sans-serif; color:#8390A4; text-align:left">
                         Helps us tailor follow-up communications
                       </label>
                     </div>
@@ -984,9 +1280,13 @@
                 </div>
                 <div style="padding: 8px 0;">
                   <div class="sib-form-block" style="text-align: left">
-                    <button class="sib-form-block__button sib-form-block__button-with-loader" style="font-size:16px; text-align:left; font-weight:700; font-family:Helvetica, sans-serif; color:#FFFFFF; background-color:#3E4857; border-radius:3px; border-width:0px;" form="sib-form" type="submit">
-                      <svg class="icon clickable__icon progress-indicator__icon sib-hide-loader-icon" viewBox="0 0 512 512">
-                        <path d="M460.116 373.846l-20.823-12.022c-5.541-3.199-7.54-10.159-4.663-15.874 30.137-59.886 28.343-131.652-5.386-189.946-33.641-58.394-94.896-95.833-161.827-99.676C261.028 55.961 256 50.751 256 44.352V20.309c0-6.904 5.808-12.337 12.703-11.982 83.556 4.306 160.163 50.864 202.11 123.677 42.063 72.696 44.079 162.316 6.031 236.832-3.14 6.148-10.75 8.461-16.728 5.01z" />
+                    <button class="sib-form-block__button sib-form-block__button-with-loader"
+                      style="font-size:16px; text-align:left; font-weight:700; font-family:Helvetica, sans-serif; color:#FFFFFF; background-color:#3E4857; border-radius:3px; border-width:0px;"
+                      form="sib-form" type="submit">
+                      <svg class="icon clickable__icon progress-indicator__icon sib-hide-loader-icon"
+                        viewBox="0 0 512 512">
+                        <path
+                          d="M460.116 373.846l-20.823-12.022c-5.541-3.199-7.54-10.159-4.663-15.874 30.137-59.886 28.343-131.652-5.386-189.946-33.641-58.394-94.896-95.833-161.827-99.676C261.028 55.961 256 50.751 256 44.352V20.309c0-6.904 5.808-12.337 12.703-11.982 83.556 4.306 160.163 50.864 202.11 123.677 42.063 72.696 44.079 162.316 6.031 236.832-3.14 6.148-10.75 8.461-16.728 5.01z" />
                       </svg>
                       JOIN WAITLIST
                     </button>
@@ -999,8 +1299,9 @@
             </div>
           </div>
         </div>
-        
-        <p style="text-align: center; font-size: 0.75rem; color: var(--text-muted); margin-top: 16px;">Limited batch invites sent weekly.</p>
+
+        <p style="text-align: center; font-size: 0.75rem; color: var(--text-muted); margin-top: 16px;">Limited batch
+          invites sent weekly.</p>
 
         <script>
           // Handle form submission
@@ -1044,11 +1345,13 @@
     <div class="container">
       <p>&copy; 2025 Trade Conductor. Built for the modern quant.</p>
       <div class="footer-disclaimer">
-        Trade Conductor is an independent software application and is not affiliated with, endorsed by, or sponsored by Composer Technologies Inc. ("Composer").
+        Trade Conductor is an independent software application and is not affiliated with, endorsed by, or sponsored by
+        Composer Technologies Inc. ("Composer").
       </div>
     </div>
   </footer>
 
   <script>lucide.createIcons();</script>
 </body>
+
 </html>
