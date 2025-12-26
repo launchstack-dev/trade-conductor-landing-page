@@ -1374,7 +1374,7 @@
   </section>
 
   <!-- Features Section -->
-  <section class="features">
+  <section class="features" id="features">
     <div class="container">
       <div class="section-header">
         <h2>Professional Grade Risk Tools</h2>
@@ -1428,9 +1428,9 @@
   </section>
 
   <!-- CTA Section -->
-  <section class="cta" id="waitlist" style="padding: 120px 0; position: relative;">
-    <div class="container" style="max-width: 900px;">
-      <div class="cta-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
+  <section class="cta" id="waitlist" style="padding: 80px 0; position: relative;">
+    <div class="container">
+      <div class="cta-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
         <div style="text-align: left;">
           <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Join the <span class="gradient">Alpha</span></h2>
           <p style="color: var(--text-secondary); margin-bottom: 32px;">We're opening spots in batches. Founding members
@@ -1512,34 +1512,6 @@
                   </div>
                 </div>
                 <div style="padding: 8px 0;">
-                  <div class="sib-input sib-form-block">
-                    <div class="form__entry entry_block">
-                      <div class="form__label-row ">
-                        <label class="entry__label"
-                          style="font-weight: 700; text-align:left; font-size:16px; text-align:left; font-weight:700; font-family:Helvetica, sans-serif; color:var(--text-secondary);"
-                          for="ACCOUNT_SIZE">Account size range (optional)</label>
-
-                        <div class="entry__field">
-                          <select class="input" id="ACCOUNT_SIZE" name="ACCOUNT_SIZE"
-                            style="width: 100%; padding: 16px 20px; border-radius: 10px; background: var(--bg-primary); border: 1px solid var(--border-color); color: var(--text-primary); font-family: 'Inter', sans-serif; font-size: 1rem; cursor: pointer;">
-                            <option value="">Select account size...</option>
-                            <option value="under-25k">Under $25,000</option>
-                            <option value="25k-100k">$25,000 - $100,000</option>
-                            <option value="100k-250k">$100,000 - $250,000</option>
-                            <option value="250k-500k">$250,000 - $500,000</option>
-                            <option value="500k-1m">$500,000 - $1,000,000</option>
-                            <option value="over-1m">Over $1,000,000</option>
-                          </select>
-                        </div>
-                      </div>
-                      <label class="entry__specification"
-                        style="font-size:12px; text-align:left; font-family:Helvetica, sans-serif; color:#8390A4; text-align:left">
-                        Helps us tailor follow-up communications
-                      </label>
-                    </div>
-                  </div>
-                </div>
-                <div style="padding: 8px 0;">
                   <div class="sib-form-block" style="text-align: left">
                     <button class="sib-form-block__button sib-form-block__button-with-loader"
                       style="font-size:16px; text-align:left; font-weight:700; font-family:Helvetica, sans-serif; color:#FFFFFF; background-color:#3E4857; border-radius:3px; border-width:0px;"
@@ -1551,6 +1523,8 @@
                       </svg>
                       JOIN WAITLIST
                     </button>
+                    <p style="text-align: center; font-size: 0.75rem; color: var(--text-muted); margin-top: 12px;">
+                      Limited batch invites sent weekly.</p>
                   </div>
                 </div>
                 <input type="text" name="email_address_check" value="" class="input--hidden">
@@ -1560,9 +1534,6 @@
             </div>
           </div>
         </div>
-
-        <p style="text-align: center; font-size: 0.75rem; color: var(--text-muted); margin-top: 16px;">Limited batch
-          invites sent weekly.</p>
 
         <script>
           // Handle form submission
