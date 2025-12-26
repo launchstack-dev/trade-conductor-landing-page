@@ -15,12 +15,14 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
     rel="stylesheet">
 
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="icon.png">
+
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <!-- Brevo Form Styles -->
   <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
-
   <style>
     :root {
       /* Deep Slate & Neon Design System */
@@ -189,20 +191,32 @@
     .logo {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       text-decoration: none;
+      font-weight: 700;
+      font-size: 1.25rem;
+      letter-spacing: -0.025em;
+    }
+
+    .logo-icon-wrapper {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      background: linear-gradient(to top right, #2563eb, #22d3ee);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-neon);
     }
 
     .logo-icon {
-      width: 32px;
-      height: 32px;
-      color: var(--accent-blue);
+      width: 20px;
+      height: 20px;
+      color: #000;
     }
 
     .logo-text {
-      font-size: 1.25rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, var(--accent-blue), var(--accent-indigo));
+      background: linear-gradient(to right, #FFFFFF, #94A3B8);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -1042,7 +1056,9 @@
   <nav>
     <div class="container nav-content">
       <a href="#" class="logo">
-        <i data-lucide="trending-up" class="logo-icon"></i>
+        <div class="logo-icon-wrapper">
+          <i data-lucide="activity" class="logo-icon"></i>
+        </div>
         <span class="logo-text">Trade Conductor</span>
       </a>
       <a href="#waitlist" class="nav-cta">Request Alpha Access</a>
