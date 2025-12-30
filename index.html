@@ -1557,13 +1557,27 @@
             e.preventDefault();
 
             const form = this;
+            const emailInput = document.getElementById('EMAIL');
+            const email = emailInput.value.trim();
+
+            // Basic client-side validation
+            if (!email || !email.includes('@')) {
+              return;
+            }
+
+            // Create URL-encoded data instead of FormData (multipart)
+            // This ensures compatibility with traditional form endpoints like Brevo
             const formData = new FormData(form);
+            const searchParams = new URLSearchParams();
+            for (const [key, value] of formData) {
+              searchParams.append(key, value);
+            }
 
             // Submit to Brevo
             fetch(form.action, {
               method: 'POST',
-              body: formData,
-              mode: 'no-cors' // Brevo doesn't support CORS, so we use no-cors
+              body: searchParams,
+              mode: 'no-cors' // Brevo doesn't support CORS for direct form submissions
             }).then(() => {
               // Hide form and show success message
               document.getElementById('sib-form-container').querySelector('#sib-container').style.display = 'none';
@@ -1574,8 +1588,9 @@
                 lucide.createIcons();
               }
             }).catch((error) => {
-              console.error('Error:', error);
-              // Still show success since no-cors doesn't give us response
+              console.error('Error submitting form:', error);
+              // Fallback: still show success since no-cors doesn't give us response details
+              // and the most common "error" is just the browser blocking CORS details
               document.getElementById('sib-form-container').querySelector('#sib-container').style.display = 'none';
               document.getElementById('success-message').style.display = 'block';
 
